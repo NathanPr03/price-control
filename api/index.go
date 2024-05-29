@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
-	"price-control/internal/db"
+	"price-control/pkg/db"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
