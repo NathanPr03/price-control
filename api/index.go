@@ -8,7 +8,8 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	dbConnection, _ := db.ConnectToDb()
+	dbConnection, err := db.ConnectToDb()
+	panic(err)
 	defer dbConnection.Close()
 	dbConnection.Exec("CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, name TEXT)")
 	dbConnection.Exec("INSERT INTO products (name) VALUES ('Meatballs')")
