@@ -14,8 +14,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer dbConnection.Close()
-	dbConnection.Exec("CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, name TEXT)")
-	dbConnection.Exec("INSERT INTO products (name) VALUES ('Meatballs')")
+	dbConnection.Exec("INSERT INTO products (name) VALUES ('Washing Machine')")
 	var id int
 	var name string
 
