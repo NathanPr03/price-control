@@ -18,6 +18,11 @@ func SetProductDiscount(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	if product.DiscountType == "" || product.ProductName == "" {
+		http.Error(w, "Discount type and product name cannot be empty", http.StatusBadRequest)
+		return
+	}
+
 	dbConnection, err := db.ConnectToDb()
 	if err != nil {
 		_, _ = fmt.Fprintf(w, "<h1>Error connecting to database: %v(</h1>", err)
@@ -39,7 +44,7 @@ func SetProductDiscount(w http.ResponseWriter, request *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	_, _ = w.Write([]byte(`{"message": "Product price added successfully"}`))
+	_, _ = w.Write([]byte(`{"message": "Product discount added successfully"}`))
 }
 
 func init() {

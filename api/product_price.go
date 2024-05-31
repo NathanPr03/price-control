@@ -18,6 +18,11 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	if product.Price < 0.1 || product.ProductName == "" {
+		http.Error(w, "Discount type and product name cannot be empty", http.StatusBadRequest)
+		return
+	}
+
 	dbConnection, err := db.ConnectToDb()
 	if err != nil {
 		_, _ = fmt.Fprintf(w, "<h1>Error connecting to database: %v(</h1>", err)
