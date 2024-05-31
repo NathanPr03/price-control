@@ -1,8 +1,7 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/index.go", "use": "@vercel/go" },
-    { "src": "api/product_price.go", "use": "@vercel/go" }
+    { "src": "api/*.go", "use": "@vercel/go" }
   ],
   "routes": [
     { "src": "/api/hello", "dest": "/api/index.go"},

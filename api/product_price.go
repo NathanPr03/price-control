@@ -35,3 +35,7 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(`{"message": "Product price added successfully"}`))
 }
+
+func init() {
+	http.HandleFunc("/productPrice", SetProductPrice)
+}
