@@ -20,7 +20,7 @@ type PostProductDiscountJSONBodyDiscountType string
 
 // PostProductPriceJSONBody defines parameters for PostProductPrice.
 type PostProductPriceJSONBody struct {
-	Price       float32 `json:"price"`
+	Price       float64 `json:"price"`
 	ProductName string  `json:"productName"`
 }
 
