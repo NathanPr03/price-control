@@ -28,11 +28,11 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 		_ = dbConnection.Close()
 	}(dbConnection)
 
-	query := fmt.Sprintf("UPDATE products SET price = %s WHERE name = '%s'", product.Price, product.ProductName)
+	query := "UPDATE products SET price = $1 WHERE name = $2"
 	fmt.Println(query)
-	_, err = dbConnection.Exec(query)
+	_, err = dbConnection.Exec(query, product.Price, product.ProductName)
 	if err != nil {
-		_, _ = fmt.Fprintf(w, "<h1>Error inserting product price: %v</h1>", err)
+		_, _ = fmt.Fprintf(w, "<h1>Error inserting product price: </h1>")
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
