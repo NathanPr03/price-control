@@ -81,21 +81,16 @@ paths:
                   error:
                     type: string
     get:
-      summary: Get discounted products by discount type
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                discountType:
-                  type: string
-                  enum:
-                    - 2-for-1
-                    - half-price
-              required:
-                - productName
+      summary: Get products by discount type
+      parameters:
+        - name: discountType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - 2-for-1
+              - half-price
       responses:
         '200':
           description: Discounted products
