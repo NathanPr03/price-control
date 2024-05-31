@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
+	"github.com/NathanPr03/price-control/api/generated"
+	"github.com/NathanPr03/price-control/pkg/db"
 	"net/http"
-	"price-control/api/generated"
-	"price-control/pkg/db"
 )
 
 func SetProductPrice(w http.ResponseWriter, request *http.Request) {
