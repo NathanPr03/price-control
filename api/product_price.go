@@ -32,8 +32,8 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 	_, err = dbConnection.Exec(query)
 	if err != nil {
 		fmt.Fprintf(w, "<h1>Error inserting product price: %v</h1>", err)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
-
 	}
 
 	// Respond to the client
