@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  version: 1.0.0
+paths:
+  /productPrice:
+    post:
+      summary: Add product price
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productName:
+                  type: string
+                price:
+                  type: number
+              required:
+                - productName
+                - price
+      responses:
+        '200':
+          description: Product price added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /productDiscount:
+    post:
+      summary: Add product discount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productName:
+                  type: string
+                discountType:
+                  type: string
+                  enum:
+                    - 2-for-1
+                    - half-price
+              required:
+                - productName
+                - discountType
+      responses:
+        '200':
+          description: Product discount added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string

@@ -4,6 +4,7 @@
     { "src": "api/index.go", "use": "@vercel/go" }
   ],
   "routes": [
-    { "src": "/api/hello", "dest": "/api/index.go" }
+    { "src": "/api/hello", "dest": "/api/index.go"},
+    { "src": "/api/productPrice", "dest": "/api/set_product_price.go"}
   ]
 }
