@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"encoding/json"
 	"github.com/NathanPr03/price-control/pkg/db"
 	"net/http"
 )
@@ -33,8 +34,10 @@ func AllProducts(w http.ResponseWriter, r *http.Request) {
 		products = append(products, product)
 	}
 
+	response := map[string][]WholeProduct{"products": products}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(response)
 }
 
 func init() {
