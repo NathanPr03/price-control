@@ -82,7 +82,6 @@ func SetProductDiscount(w http.ResponseWriter, request *http.Request) {
 	}(dbConnection)
 
 	query := "UPDATE products SET discount = $1 WHERE name = $2"
-	fmt.Println(query)
 	_, err = dbConnection.Exec(query, product.DiscountType, product.ProductName)
 	if err != nil {
 		_, _ = fmt.Fprintf(w, "<h1>Error inserting product discount: </h1>")
