@@ -36,6 +36,9 @@ func AllProducts(w http.ResponseWriter, r *http.Request) {
 
 	response := map[string][]WholeProduct{"products": products}
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:4200") // Allow requests from this origin
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")   // Allow specific HTTP methods
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")         // Allow specific headers
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(response)
 }
