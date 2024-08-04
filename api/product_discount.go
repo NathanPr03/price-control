@@ -17,6 +17,12 @@ func ProductDiscountHandler(w http.ResponseWriter, request *http.Request) {
 		SetProductDiscount(w, request)
 	case http.MethodGet:
 		GetDiscountedProducts(w, request)
+	case http.MethodOptions:
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
 	}
 }
 
@@ -97,11 +103,11 @@ func SetProductDiscount(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write([]byte(`{"message": "Product discount added successfully"}`))
 }
 
