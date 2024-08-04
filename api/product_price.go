@@ -17,6 +17,7 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
+
 	var product generated.PostProductPriceJSONBody
 
 	err := json.NewDecoder(request.Body).Decode(&product)

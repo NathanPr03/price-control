@@ -59,6 +59,14 @@ func GetDiscountedProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 func SetProductDiscount(w http.ResponseWriter, request *http.Request) {
+	if request.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
 	var product generated.PostProductDiscountJSONBody
 
 	err := json.NewDecoder(request.Body).Decode(&product)
