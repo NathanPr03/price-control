@@ -7,6 +7,7 @@
     { "src": "/api/hello", "dest": "/api/index.go"},
     { "src": "/api/productPrice", "dest": "/api/product_price.go"},
     { "src": "/api/productDiscount", "dest": "/api/product_discount.go"},
-    { "src": "/api/products", "dest": "/api/all_products.go"}
+    { "src": "/api/products", "dest": "/api/all_products.go"},
+    { "src": "api/product", "dest": "/api/product.go"}
   ]
 }
