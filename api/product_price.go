@@ -10,6 +10,14 @@ import (
 )
 
 func SetProductPrice(w http.ResponseWriter, request *http.Request) {
+	if request.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+
 	var product generated.PostProductPriceJSONBody
 
 	err := json.NewDecoder(request.Body).Decode(&product)
@@ -19,7 +27,7 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 	}
 
 	if product.Price < 0.1 || product.ProductName == "" {
-		http.Error(w, "Discount type and product name cannot be empty", http.StatusBadRequest)
+		http.Error(w, "Price and product name cannot be empty", http.StatusBadRequest)
 		return
 	}
 
@@ -42,8 +50,11 @@ func SetProductPrice(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write([]byte(`{"message": "Product price added successfully"}`))
 }
 
