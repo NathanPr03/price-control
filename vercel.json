@@ -9,5 +9,11 @@
     { "src": "/api/productDiscount", "dest": "/api/product_discount.go"},
     { "src": "/api/products", "dest": "/api/all_products.go"},
     { "src": "/api/product", "dest": "/api/product.go"}
+  ],
+  "crons": [
+    {
+      "path": "/api/hello",
+      "schedule": "0 0 * * 1-5"
+    }
   ]
 }
